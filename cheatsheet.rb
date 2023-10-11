@@ -291,3 +291,48 @@ end
 
 # break ends the loop
 # next jumps to the next iteration
+i = 0
+loop do
+  i = i + 2
+  if i == 4
+    next        # skip rest of the code in this iteration
+  end
+  puts i
+  if i == 10
+    break
+  end
+end
+
+# while, until, for loops don't have their own scope
+
+
+# ITERATORS
+
+array_of_names.each {|name| puts name } # print each name in the array
+
+
+# ARRAY
+
+Array.new           #=> []
+Array.new(3)        #=> [nil, nil, nil]
+Array.new(3, 7)     #=> [7, 7, 7]
+Array.new(3, true)  #=> [true, true, true]
+
+num_array = [1, 2, 3]
+str_array = ["a", "b", "c"]
+
+str_array[0]  #=> "a"
+str_array[-1] #=> "c"
+str_array[-2] #=> "b"
+str_array.first   #=> "a"
+str_array.last(2) #=> ["b", "c"]
+
+
+
+
+
+
+
+
+
+
