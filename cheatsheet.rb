@@ -118,7 +118,7 @@ a.equal?(b) #=> false (checks whether both values are the exact same object in m
 "hello"[0, 4] #=> "hell"
 "hello"[-1] #=> "o"
 
-"string".capitalize #=> "Hello"
+"string".capitalize #=> "String"
 "string".include?("tri") #=> true 
 "string".upcase #=> "STRING"
 "STRING".downcase #=> "string" 
@@ -314,14 +314,23 @@ numbers.map { |n| n*n }     #=> return new array [1, 4, 9, 16], initial array un
 numbers.collect { |n| n*n } #=> return new array [1, 4, 9, 16], initial array unchanged
 numbers.select { |n| n > 2 } #=> return new array [3, 4], initial array unchanged
 
+numbers.each_index { |i| puts i} #=> print 0, 1, 2, 3 and return initial array 
+numbers.each_with_index { |value, index| puts "#{index+1}. #{value}" }
+
 
 # ARRAY
+
+## initialize:  Array.new, [], %w
+## read:        [0], first, last
+## add:         push, <<, unshift
+## remove:      pop, delete_at, shift
 
 Array.new           #=> []
 Array.new(3)        #=> [nil, nil, nil]
 Array.new(3, 7)     #=> [7, 7, 7]
 Array.new(3, true)  #=> [true, true, true]
 
+str_array = %w(a, b, c)
 str_array = ["a", "b", "c"]
 str_array[0]  #=> "a"
 str_array[-1] #=> "c"
@@ -350,6 +359,7 @@ a.concat(b) #=> [1, 2, 3, 3, 4, 5]
 [].empty?               #=> true
 [[]].empty?             #=> false
 [1, 2, 3].length        #=> 3
+[1, 2, 3].size          #=> 3
 [1, 2, 3].reverse       #=> [3, 2, 1]
 [1, 2, 3].include?(3)   #=> true 
 [1, 2, 3].include?("3") #=> false
@@ -364,10 +374,22 @@ numbers = [1, 1, 2, 2, 3, 3, 4, 4]
 numbers.uniq  #=> return new array [1, 2, 3, 4], initial array unchanged
 numbers.uniq! #=> return modified initial array [1, 2, 3, 4]
 
+arrays = [1, 2, [3, 4], [5, 6]]
+arrays.flatten #=> [1, 2, 3, 4, 5, 6]
 
+array = [2, 3, 1, 4]
+array.sort #=> return new array [1, 2, 3, 4], initial array unchanged
 
+[1, 2, 3].product([4, 5]) 
+#=> [[1, 4], [1, 5], [2, 4], [2, 5], [3, 4], [3, 5]]
 
+[1, 2, 3].sample # pick one random item from array
 
+array.take(3) # get first three items from array
+array[0,3] # starting from index 0, get three items from array
+array[1..-1] # get items from index 1 to index -1 inclusive from array
+array.compact # remove nil from array
+array_a & array_b # get items that appear in two arrays at the same time
 
 
 
