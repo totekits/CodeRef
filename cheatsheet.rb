@@ -308,7 +308,11 @@ end
 
 # ITERATORS
 
-array_of_names.each {|name| puts name } # print each name in the array
+numbers = [1, 2, 3, 4]
+numbers.each { |n| puts n } #=> print 1, 2, 3, 4 and return initial array
+numbers.map { |n| n*n }     #=> return new array [1, 4, 9, 16], initial array unchanged
+numbers.collect { |n| n*n } #=> return new array [1, 4, 9, 16], initial array unchanged
+numbers.select { |n| n > 2 } #=> return new array [3, 4], initial array unchanged
 
 
 # ARRAY
@@ -318,16 +322,47 @@ Array.new(3)        #=> [nil, nil, nil]
 Array.new(3, 7)     #=> [7, 7, 7]
 Array.new(3, true)  #=> [true, true, true]
 
-num_array = [1, 2, 3]
 str_array = ["a", "b", "c"]
-
 str_array[0]  #=> "a"
 str_array[-1] #=> "c"
 str_array[-2] #=> "b"
 str_array.first   #=> "a"
 str_array.last(2) #=> ["b", "c"]
 
+num_array = [1, 2, 3]
+num_array.push(4)     #=> [1, 2, 3, 4]
+num_array << 5        #=> [1, 2, 3, 4, 5]
+num_array.pop         #=> 5
+num_array.unshift(7)  #=> [7, 1, 2, 3, 4]
+num_array.shift       #=> 7
 
+#pop and #shift can take integer argument
+num_array = [1, 2, 3, 4, 5]
+num_array.pop(2)    #=> [4, 5]
+num_array.shift(2)  #=> [1, 2]
+
+a = [1, 2, 3]
+b = [3, 4, 5]
+a + b       #=> [1, 2, 3, 3, 4, 5]
+a.concat(b) #=> [1, 2, 3, 3, 4, 5]
+[1, 1, 2, 2, 3, 4] - [1, 4] #=> [2, 2, 3]
+
+[].empty?               #=> true
+[[]].empty?             #=> false
+[1, 2, 3].length        #=> 3
+[1, 2, 3].reverse       #=> [3, 2, 1]
+[1, 2, 3].include?(3)   #=> true 
+[1, 2, 3].include?("3") #=> false
+[1, 2, 3].join          #=> "123"
+[1, 2, 3].join("-")     #=> "1-2-3"
+
+numbers = [1, 2, 3, 4]
+numbers.delete_at(1) #=> return the deleted value 2, initial array modified to [1, 3, 4]
+numbers.delete(1) #=> return modified initial array [2, 3, 4]
+
+numbers = [1, 1, 2, 2, 3, 3, 4, 4]
+numbers.uniq  #=> return new array [1, 2, 3, 4], initial array unchanged
+numbers.uniq! #=> return modified initial array [1, 2, 3, 4]
 
 
 
