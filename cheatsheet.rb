@@ -319,9 +319,9 @@ arr.collect { |item| code } # return new array, non-destructive
 
 # ARRAY
 
-## create: [], Array, Array.new, %w, %i
+## create
 
-[1, "two", :three]
+array = [1, "two", :three]
 Array(nil)        #=> []
 Array(3)          #=> [3]
 Array(1..3)       #=> [1, 2, 3]
@@ -335,7 +335,7 @@ Array.new(3, true)  #=> [true, true, true]
 %i[1 b c] #=> [:"1", :b, :c]
 %i(1 b c) #=> [:"1", :b, :c] # convert to symbol
 
-## check: size, length, count, include?, empty?
+## check
 
 arr = ["a", "b", "c"]
 arr.size            #=> 3
@@ -345,7 +345,19 @@ arr.count("a")      #=> 1 # can take argument and block
 arr.include?("b") #=> true
 arr.empty?        #=> false
 
-## select: [0], at. first, last, take, drop
+## arrange
+
+arr = [1, [2, 3], 4]
+arr.reverse   #=> [4, [2, 3], 1]
+arr.flatten   #=> [1, 2, 3, 4]
+
+arr = [1, 3, 2, 4]
+arr.sort  #=> [1, 2, 3, 4]
+
+[1, 2,].product([3, 4]) 
+#=> [[1, 3], [1, 4], [2, 3], [2, 4]]
+
+## access
 
 arr = [1, 2, 3, 4, 5, 6]
 arr[2]    #=> 3
@@ -364,8 +376,9 @@ arr.reject { |item| item < 4 }    #=> [4, 5, 6] # destructive: reject!
 arr.keep_if { |item| item > 3 }   #=> [4, 5, 6]
 arr.delete_if { |item| item < 4 } #=> [4, 5, 6]
 arr.sample(n) # return n random element from array
+array_a & array_b # get items that appear in two arrays at the same time
 
-## add: <<, push, unshift, insert
+## add
 
 arr = [1, 2, 3, 4]
 arr << 5        #=> [1, 2, 3, 4, 5]
@@ -373,7 +386,14 @@ arr.push(6)     #=> [1, 2, 3, 4, 5, 6]
 arr.unshift(0)  #=> [0, 1, 2, 3, 4, 5, 6] 
 arr.insert(3, "apple", "orange")  #=> [0, 1, 2, "apple", "orange", 3, 4, 5, 6]
 
-## remove:  pop, delete_at, shift
+a = [1, 2, 3]
+b = [3, 4, 5]
+a + b       #=> [1, 2, 3, 3, 4, 5]
+a.concat(b) #=> [1, 2, 3, 3, 4, 5]
+a.join      #=> "123"
+a.join("-") #=> "1-2-3"
+
+## remove
 
 arr = [0, 1, 2, 3, 3, 4, 5, nil, 6]
 arr.pop        #=> 6        arr = [0, 1, 2, 3, 3, 4, 5, nil]
@@ -383,35 +403,80 @@ arr.delete(2)     #=> [3, 3, 5, nil]
 arr.compact       #=> [3, 3, 5]   # destruvtive: compact!
 arr.uniq          #=> [3, 5]      # destructive: uniq!
 arr.clear      #=> []
-
-## others
-
-a = [1, 2, 3]
-b = [3, 4, 5]
-a + b       #=> [1, 2, 3, 3, 4, 5]
-a.concat(b) #=> [1, 2, 3, 3, 4, 5]
 [1, 1, 2, 2, 3, 4] - [1, 4] #=> [2, 2, 3]
-[1, 2, 3].reverse       #=> [3, 2, 1]
-[1, 2, 3].join          #=> "123"
-[1, 2, 3].join("-")     #=> "1-2-3"
-
-arrays = [1, 2, [3, 4], [5, 6]]
-arrays.flatten #=> [1, 2, 3, 4, 5, 6]
-
-array = [2, 3, 1, 4]
-array.sort #=> return new array [1, 2, 3, 4], initial array unchanged
-
-[1, 2, 3].product([4, 5]) 
-#=> [[1, 4], [1, 5], [2, 4], [2, 5], [3, 4], [3, 5]]
-
-array_a & array_b # get items that appear in two arrays at the same time
 
 
 # HASH
 
+## create
+
+hash = { 
+  "key" => "value", 
+  :key => 1,
+  7 => [] 
+}
+
+Hash.new  #=> {}
+
+rocket_syntax = {
+  :a => 1,
+  :b => 2
+}
+
+symbol_syntax = {
+  a: 1,
+  b: 2
+}
+
+## check
+
+hash.key?(key)  #=> return true or false
+
+## arrange
+
+hash = {
+  a: 1,
+  b: 2
+}
+hash.to_a   #=> [[:a, 1], [:b, 2]]
 
 
+## access
 
+shoes = { 
+  summer: "sandals", 
+  winter: "boots" 
+}
+shoes[:summer]   #=> "sandals"
+shoes[:spring]   #=> nil
+shoes.keys    #=> [:summer, :winter]
+shoes.values  #=> ["sandals" , "boots"]
+shoes.select { |k, v| condition } #=> return k-v pairs if true
+shoes.fetch(:summer)  #=> "sandals"
+shoes.fetch(:fall)    #=> KeyError: key not found: :fall
+shoes.fetch(:fall, "defalt nil message")  #=> "default nil message"
 
+## add
+
+shoes = {}
+shoes["fall"] = "sneakers"  #=> shoes = { "fall" => "sneakers" }
+
+hash_x = { "a" => 100, "b" => 200 }
+hash_y = { "b" => 250, "c" => 300 }
+hash_x.merge(hash_y)  #=> { "a" => 100, "b" => 250, "c" => 300 }  # destructive: merge!
+
+## remove
+
+shoes = { 
+  "summer" => "sandals", 
+  "winter" => "boots" 
+}
+shoes.delete("summer")  #=> "sandals" # shoes = { "winter" => "boots" }  # destructive
+
+## iterate
+
+hash.each do |key, value|
+  # code
+end
 
 
