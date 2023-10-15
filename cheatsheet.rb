@@ -7,54 +7,60 @@ cannot be indented
 
 file_variable_method
 
-CONSTANT # available throughout app
-$global # available throughout app
-@@class # accessible by instances of class, or class itself
+CONSTANT  # available throughout app
+$global   # available throughout app
+@@class   # accessible by instances of class, or class itself
 @instance # available throughout the current instance of parent class
-local # obey all scope boundaries
+local     # obey all scope boundaries
 
 ClassExample
 
-[1, 2, 3].each { |i| single_line_code }
+arr.each { |item| single-line code }
 
-[1, 2, 3].each do |i|
+arr.each do |item|
   # multi-line
+  # code
+end
+
+def method(parameter = "default")
   # code
 end
 
 
 # LITERALS
 
-"string" # string
-123 # integer
-3.14 # float
-true # boolean
-{'a' => 1, 'b' => 2} # hash
-[1, 2, 3] # array 
-:sym # symbol
-nil # nil
+"string"              # string
+123                   # integer
+3.14                  # float
+true                  # boolean
+nil                   # nil
+:sym                  # symbol
+[item, element, 1]    # array 
+{key: "value", f: 2}  # hash
 
 
 # COMPARISON OPERATORS
 
-4 == 4 #=> true (equals)
-"4" == 4 #=> false
-"abc" == "abc" #=> true
-nil == false #=> false
-4 != 5 #=> true (not equals)
-4 > 5 #=> false (greater than)
-4 >= 5 #=> true (greater than or equal to) 
-4 < 5 #=> true (less than)
-4 <= 5 #=> true (less than or equal to)
-5.eql?(5.0) #=> false (cheaks value and type)
+4 == 4          #=> true (equals)
+"4" == 4        #=> false
+"abc" == "abc"  #=> true
+nil == false    #=> false
+4 != 5          #=> true (not equals)
+4 > 5           #=> false (greater than)
+4 >= 5          #=> true (greater than or equal to) 
+4 < 5           #=> true (less than)
+4 <= 5          #=> true (less than or equal to)
+5.eql?(5.0)     #=> false (cheaks value and type)
 
 a = 5
 b = 5
-a.equal?(b) #=> true (checks whether both values are the exact same object in memory)
+a.equal?(b)
+#=> true (checks whether both values are the exact same object in memory)
 
 a = "hello"
 b = "hello"
-a.equal?(b) #=> false (checks whether both values are the exact same object in memory)
+a.equal?(b)
+#=> false (checks whether both values are the exact same object in memory)
 
 5 <=> 10    #=> -1 (left value < right value)
 10 <=> 10   #=> 0 (left value == right value)
@@ -63,84 +69,80 @@ a.equal?(b) #=> false (checks whether both values are the exact same object in m
 
 # MATH OPERATORS
 
-# add 
-1 + 1 #=> 2
+## add 
+1 + 1     #=> 2
 
-# subtract
-2 - 1 #=> 1
+## subtract
+2 - 1     #=> 1
 
-# multiply
-2 * 2 #=> 4
+## multiply
+2 * 2     #=> 4
 
-# divide 
-8 / 2 #=> 4
+## divide 
+8 / 2     #=> 4
 
-# power
-3 ** 2 #=> 9
+## power
+3 ** 2    #=> 9
 
-# modulo
-8 % 2 #=> 0
+## modulo
+8 % 2     #=> 0
 
 2 + 3 * 4 #=> 14 things on the right go first
 
 
 # NUMBERS
 
-17 / 5 #=> 3
-17 / 5.0 #=> 3.4
-
-13.to_f #=> 13.0 
+17 / 5    #=> 3
+17 / 5.0  #=> 3.4
+13.to_f   #=> 13.0 
 13.9.to_i #=> 13 (no rounding)
-
-6.even? #=> true
-7.even? #=> false
-
-6.odd? #=> false
-7.odd? #=> true
-
-16.remainder(5) #=> 1
-16.divmod(5) #=> [3, 1]
+6.even?           #=> true
+6.odd?            #=> false
+6.between?(4, 8)  #=> true
+16.remainder(5)   #=> 1
+16.divmod(5)      #=> [3, 1]
 
 
 # STRINGS
 
 'string literals'
-"string literals" # accepts interpolation and escape characters (\', \",)
+"string literals" # accept interpolation and escape characters (\', \",)
 \n # newline
 "Hello, #{name}!" # interpolation
 
 "Hello ".concat("world!") #=> "Hello world!"
-"Hello " + "world!" #=> "Hello world!"
-"Hello " << "world!" #=> "Hello world!"
+"Hello " + "world!"       #=> "Hello world!"
+"Hello " << "world!"      #=> "Hello world!"
 
-"hello"[0] #=> "h"
-"hello"[0..1] #=> "he"
-"hello"[0, 4] #=> "hell"
-"hello"[-1] #=> "o"
+"abcd"[0]    #=> "a"
+"abcd"[0..1] #=> "ab"
+"abcd"[0, 3] #=> "abc"
+"abcd"[-1]   #=> "d"
 
-"string".capitalize #=> "String"
-"string".include?("tri") #=> true 
-"string".upcase #=> "STRING"
-"STRING".downcase #=> "string" 
-"string".empty? #=> false
-"string".length #=> 6
-"string".reverse #=> "gnirts"
-" string ".strip #=> "string"
-"string".nil? #=> false
+"check".empty?           #=> false
+"check".nil?             #=> false
+"check".include?("hec")  #=> true
+"check".length           #=> 5
 
-"string separation".split #=> ["string", "separation"]
-"string".split("") #=> ["s", "t", "r", "i", "n", "g"]
-"string".chars #=> ["s", "t", "r", "i", "n", "g"]
+"arrange".capitalize  #=> "Arrange"
+"arrange".upcase      #=> "ARRANGE"
+"ARRANGE".downcase    #=> "arrange" 
+"arrange".reverse     #=> "egnarra"
+" arrange ".strip     #=> "arrange"
+"ar range".split      #=> ["ar", "range"]
+"arrange".split("")   #=> ["a", "r", "r", "a", "n", "g", "e"]
+"arrange".chars       #=> ["a", "r", "r", "a", "n", "g", "e"]
 
-"hello".sub("l", "y") #=> "heylo"
-"hello".gsub("l", "y") #=> "heyyo"
-"hello".insert(-1, " world") #=> "hello world"
-"hello world".delete("l") #=> "heo word"
-"!".prepend("hello ", "world") #=> "hello world!" 
+"add".sub("d", "s")       #=> "asd"
+"add".gsub("a", "s")      #=> "ass"
+"add".insert(-1, " on")   #=> "add on"
+"!".prepend("add ", "on") #=> "add on!" 
 
-7.to_s #=> "7"
-nil.to_s #=> ""
-:symbol.to_s #=> "symbol"
+"remove".delete("r")      #=> "emove"
+
+7.to_s        #=> "7"
+nil.to_s      #=> ""
+:symbol.to_s  #=> "symbol"
 
 
 # ASSIGNMENT OPERATORS
@@ -173,7 +175,7 @@ putc "Hello World!"
 H=> "Hello"
 
 
-# CONDITIONAL STATEMENT
+# CONDITIONAL STATEMENTS
 
 # if statement
 if statement_to_be_evaluated == true
@@ -233,7 +235,7 @@ end
 if !(1 < 2) #=> true
 
 
-# LOOP
+# LOOPS
 
 # loop keeps going untill break
 i = 0
@@ -306,18 +308,77 @@ end
 # while, until, for loops don't have their own scope
 
 
-# ITERATORS
+# ENUMERABLES
 
-arr = [1, 2, 3, 4]
 arr.each { |item| code } # iterate over elements, return initial array
+[1, 2, 3].each { |num| print "#{num}! " }
+1! 2! 3! => [1, 2, 3]
+
+hash.each { |key, value| code } # take key and value
+{joe: 80, jack: 50, jane: 98}.each do |name, score|
+  print "#{name}: #{score} " if score > 60
+end
+joe: 80 jane: 98 => {joe: 80, jack: 50, jane: 98}
+
 arr.reverse_each { |item| code } # iterate over elements in reverse order
 arr.each_index { |index| code } # iterate over indexes, return initial array 
-arr.each_with_index { |item, index| code } # take elms and indexes
-arr.map { |item| code }  # return new array, non-destructive
-arr.collect { |item| code } # return new array, non-destructive
+
+arr.each_with_index { |item, index| code } # take elements and indexes
+["a", "b", "c", "d"].each_with_index do |alphabet, index|
+  print "#{alphabet}! " if index % 2 == 0
+end
+a! b! => ["a," "b", "c", "d"]
+
+arr.map { |item| code }  
+  # destructive: map!
+  # alt: .collect
+  # return new collection
+  # can chain .with_index
+[1, 2, 3].map { |num| num**2 }
+=> [1, 4, 9]
+["7", "8", "9"].map(&:to_i)
+=> [7, 8, 9]
+
+arr.select { |item| code }
+  # alt: filter
+  # iterate over items, return new collection 
+[1, 2, 3, 4, 5].select { |num| num % 2 == 0 }
+=> [2, 4]
+
+arr.find { |item| code }  
+  # return first item in collection if condition is true
+[1, 2, 3].find { |num| num.even? }
+=> 2
+
+arr.reduce(optional_initial_acc_value) { |accumulator, item| code }
+  # alt: .inject  
+  # iterate over elements, return accumulator 
+votes = ["A", "B", "A"]
+votes.reduce(Hash.new(0)) do |result, vote|
+  result[vote] += 1
+  result
+end
+=> {"A"=>2, "B"=>1}
+
+#any? return ture if any of the elements in this object pass the test in the block.
+#all? return true if all of the elements of this object pass the test in the block.
+#none? return true if none of the elements in the object return true when the block is run.
+
+arr.tally_by { |item| code }
+  # iterate over items, return a hash of items as keys to keep a tally of.
+[1, 2, 3].tally_by { |num| num.even? }
+=> { true => 1, false => 2 } 
+
+arr.group_by { |item| code }
+  # return a hash that groups all the different types of returns from the block.
+names = ["Joe", "Jack", "David", "Kate"]
+names.group_by { |name| name.length }
+=> { 3=>["Joe"], 4=>["Jack", "Kate"], 5=>["David"] }
+
+#grep
 
 
-# ARRAY
+# ARRAYS
 
 ## create
 
@@ -372,6 +433,7 @@ arr.take(3) #=> [1, 2, 3]
 arr.drop(3) #=> [4, 5, 6]
 arr.drop_while { |item| item < 3 }    #=> [3, 4, 5, 6]
 arr.select { |item| item > 3 }    #=> [4, 5, 6] # destructive: select!
+arr.filter { |item| item > 3 }    #=> [4, 5, 6] 
 arr.reject { |item| item < 4 }    #=> [4, 5, 6] # destructive: reject!
 arr.keep_if { |item| item > 3 }   #=> [4, 5, 6]
 arr.delete_if { |item| item < 4 } #=> [4, 5, 6]
@@ -385,6 +447,8 @@ arr << 5        #=> [1, 2, 3, 4, 5]
 arr.push(6)     #=> [1, 2, 3, 4, 5, 6]
 arr.unshift(0)  #=> [0, 1, 2, 3, 4, 5, 6] 
 arr.insert(3, "apple", "orange")  #=> [0, 1, 2, "apple", "orange", 3, 4, 5, 6]
+
+arr.sum(5)         #=> 15
 
 a = [1, 2, 3]
 b = [3, 4, 5]
@@ -406,7 +470,7 @@ arr.clear      #=> []
 [1, 1, 2, 2, 3, 4] - [1, 4] #=> [2, 2, 3]
 
 
-# HASH
+# HASHES
 
 ## create
 
@@ -472,11 +536,5 @@ shoes = {
   "winter" => "boots" 
 }
 shoes.delete("summer")  #=> "sandals" # shoes = { "winter" => "boots" }  # destructive
-
-## iterate
-
-hash.each do |key, value|
-  # code
-end
 
 
