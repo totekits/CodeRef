@@ -5,7 +5,7 @@ block comment
 cannot be indented
 =end
 
-file_variable_method
+snake_case_for_file_variable_method_name
 
 CONSTANT  # available throughout app
 $global   # available throughout app
@@ -334,6 +334,7 @@ arr.map { |item| code }
   # alt: .collect
   # return new collection
   # can chain .with_index
+  # .filter_map == .map + .compact
 [1, 2, 3].map { |num| num**2 }
 => [1, 4, 9]
 ["7", "8", "9"].map(&:to_i)
@@ -396,6 +397,8 @@ Array.new(3, true)  #=> [true, true, true]
 %i[1 b c] #=> [:"1", :b, :c]
 %i(1 b c) #=> [:"1", :b, :c] # convert to symbol
 
+Array.new(3) { Array.new(2) } #=> [[nil, nil], [nil, nil], [nil, nil]]
+
 ## check
 
 arr = ["a", "b", "c"]
@@ -440,6 +443,12 @@ arr.delete_if { |item| item < 4 } #=> [4, 5, 6]
 arr.sample(n) # return n random element from array
 array_a & array_b # get items that appear in two arrays at the same time
 
+nes_arr = [[1, 2], [3, 4], [5, 6]]
+nes_arr[0][1]     #=> 2
+nes_arr[9][0]    #=> NoMethodError
+nes_arr[0][9]    #=> nil
+nes_arr.dig(9, 9) #=> nil
+
 ## add
 
 arr = [1, 2, 3, 4]
@@ -448,6 +457,7 @@ arr.push(6)     #=> [1, 2, 3, 4, 5, 6]
 arr.unshift(0)  #=> [0, 1, 2, 3, 4, 5, 6] 
 arr.insert(3, "apple", "orange")  #=> [0, 1, 2, "apple", "orange", 3, 4, 5, 6]
 
+arr = [1, 2, 3, 4]
 arr.sum(5)         #=> 15
 
 a = [1, 2, 3]
@@ -456,6 +466,11 @@ a + b       #=> [1, 2, 3, 3, 4, 5]
 a.concat(b) #=> [1, 2, 3, 3, 4, 5]
 a.join      #=> "123"
 a.join("-") #=> "1-2-3"
+
+nes_arr = [[1, 2], [3, 4]]
+nes_arr << [5, 6]   #=> [[1, 2], [3, 4], [5, 6]]
+nes_arr[0].push(9)  #=> [1, 2, 9]
+nes_arr             #=> [[1, 2, 9], [3, 4], [5, 6]]
 
 ## remove
 
@@ -469,6 +484,10 @@ arr.uniq          #=> [3, 5]      # destructive: uniq!
 arr.clear      #=> []
 [1, 1, 2, 2, 3, 4] - [1, 4] #=> [2, 2, 3]
 
+nes_arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+nes_arr.pop     #=> [7, 8, 9]
+nes_arr[0].pop  #=> 3
+nes_arr         #=> [[1, 2], [4, 5, 6]]
 
 # HASHES
 
