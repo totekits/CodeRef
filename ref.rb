@@ -17,12 +17,11 @@ CONTENTS
 
 # 5-METHODS
 ## Create
-## Check
 ## Convert
-## Concat
+## Check
+## Arrange
 ## Add
 ## Remove
-## Arrange
 ## Select
 ## Iterate
 ## Iterate and Select
@@ -338,6 +337,26 @@ symbol_syntax = {
 
 --------------------
 
+## Convert
+
+16.to_f    #=> 16.0
+16.7.to_i  #=> 16   (no rounding)
+8.to_s     #=> "8"
+nil.to_s   #=> ""
+:abc.to_s  #=> "abc"
+
+a = [1, 2, 3]
+a.join      #=> "123"
+a.join("-") #=> "1-2-3"
+
+hash = {
+  a: 1,
+  b: 2
+}
+hash.to_a   #=> [[:a, 1], [:b, 2]]
+
+--------------------
+
 ## Check  
 
 4.even?           #=> true
@@ -365,34 +384,37 @@ hash.key?(key_name)  #=> return true or false
 
 --------------------
 
-## Convert
+## Arrange
 
-16.to_f    #=> 16.0
-16.7.to_i  #=> 16   (no rounding)
-8.to_s     #=> "8"
-nil.to_s   #=> ""
-:abc.to_s  #=> "abc"
+"arrange".capitalize  #=> "Arrange"
+"arrange".upcase      #=> "ARRANGE"
+"ARRANGE".downcase    #=> "arrange" 
+"arrange".reverse     #=> "egnarra"
+" arrange ".strip     #=> "arrange"
+"ar range".split      #=> ["ar", "range"]
+"arrange".split("")   #=> ["a", "r", "r", "a", "n", "g", "e"]
+"arrange".chars       #=> ["a", "r", "r", "a", "n", "g", "e"]
 
-hash = {
-  a: 1,
-  b: 2
-}
-hash.to_a   #=> [[:a, 1], [:b, 2]]
+arr = [1, [2, 3], 4]
+arr.reverse   #=> [4, [2, 3], 1]
+arr.flatten   #=> [1, 2, 3, 4]
 
---------------------
+arr = [1, 3, 2, 4]
+arr.sort  #=> [1, 2, 3, 4]
 
-## Concat
-
-"Hello ".concat("world!") #=> "Hello world!"
-"Hello " + "world!"       #=> "Hello world!"
-"Hello " << "world!"      #=> "Hello world!"
+[1, 2,].product([3, 4]) 
+#=> [[1, 3], [1, 4], [2, 3], [2, 4]]
 
 --------------------
 
 ## Add
 
+"con".concat("cat") #=> "concat"
+"con" + "cat"       #=> "concat"
+"con" << "cat"      #=> "concat"
+
 "add".sub("d", "s")       #=> "asd"
-"add".gsub("a", "s")      #=> "ass"
+"add".gsub("d", "s")      #=> "ass"
 "add".insert(-1, " on")   #=> "add on"
 "!".prepend("add ", "on") #=> "add on!" 
 
@@ -400,17 +422,13 @@ arr = [1, 2, 3, 4]
 arr << 5        #=> [1, 2, 3, 4, 5]
 arr.push(6)     #=> [1, 2, 3, 4, 5, 6]
 arr.unshift(0)  #=> [0, 1, 2, 3, 4, 5, 6] 
-arr.insert(3, "apple", "orange")  #=> [0, 1, 2, "apple", "orange", 3, 4, 5, 6]
-
-arr = [1, 2, 3, 4]
-arr.sum(5)         #=> 15
+arr.insert(3, 10, 20)  #=> [0, 1, 2, 10, 20, 3, 4, 5, 6]
+arr.sum(1000)          #=> 1051
 
 a = [1, 2, 3]
 b = [3, 4, 5]
 a + b       #=> [1, 2, 3, 3, 4, 5]
 a.concat(b) #=> [1, 2, 3, 3, 4, 5]
-a.join      #=> "123"
-a.join("-") #=> "1-2-3"
 
 nes_arr = [[1, 2], [3, 4]]
 nes_arr << [5, 6]   #=> [[1, 2], [3, 4], [5, 6]]
@@ -428,7 +446,7 @@ hash_x.merge(hash_y)  #=> { "a" => 100, "b" => 250, "c" => 300 }  # destructive:
 
 ## Remove
 
-"remove".delete("r")      #=> "emove"
+"apple".delete("p") #=> "ale"
 
 arr = [0, 1, 2, 3, 3, 4, 5, nil, 6]
 arr.pop        #=> 6        arr = [0, 1, 2, 3, 3, 4, 5, nil]
@@ -453,35 +471,12 @@ shoes.delete("summer")  #=> "sandals" # shoes = { "winter" => "boots" }  # destr
 
 --------------------
 
-## Arrange
-
-"arrange".capitalize  #=> "Arrange"
-"arrange".upcase      #=> "ARRANGE"
-"ARRANGE".downcase    #=> "arrange" 
-"arrange".reverse     #=> "egnarra"
-" arrange ".strip     #=> "arrange"
-"ar range".split      #=> ["ar", "range"]
-"arrange".split("")   #=> ["a", "r", "r", "a", "n", "g", "e"]
-"arrange".chars       #=> ["a", "r", "r", "a", "n", "g", "e"]
-
-arr = [1, [2, 3], 4]
-arr.reverse   #=> [4, [2, 3], 1]
-arr.flatten   #=> [1, 2, 3, 4]
-
-arr = [1, 3, 2, 4]
-arr.sort  #=> [1, 2, 3, 4]
-
-[1, 2,].product([3, 4]) 
-#=> [[1, 3], [1, 4], [2, 3], [2, 4]]
-
---------------------
-
 ## Select
 
-"abcd"[0]    #=> "a"
-"abcd"[0..1] #=> "ab"
-"abcd"[0, 3] #=> "abc"
-"abcd"[-1]   #=> "d"
+"kind"[0]    #=> "k"
+"kind"[0..1] #=> "ki"
+"kind"[0, 3] #=> "kin"
+"kind"[-1]   #=> "d"
 
 arr = [1, 2, 3, 4, 5, 6]
 arr[2]    #=> 3
