@@ -339,6 +339,10 @@ symbol_syntax = {
 
 ## Convert
 
+"con vert".split      #=> ["con", "vert"]
+"convert".split("")   #=> ["c", "o", "n", "v", "e", "r", "t"]
+"convert".chars       #=> ["c", "o", "n", "v", "e", "r", "t"]
+
 16.to_f    #=> 16.0
 16.7.to_i  #=> 16   (no rounding)
 8.to_s     #=> "8"
@@ -374,7 +378,7 @@ arr = ["a", "b", "c"]
 arr.size            #=> 3
 arr.length          #=> 3
 arr.count           #=> 3
-arr.count("a")      #=> 1 # can take argument and block
+arr.count("a")      #=> 1 
 
 hash.key?(key_name)  #=> return true or false
 
@@ -391,9 +395,6 @@ hash.key?(key_name)  #=> return true or false
 "ARRANGE".downcase    #=> "arrange" 
 "arrange".reverse     #=> "egnarra"
 " arrange ".strip     #=> "arrange"
-"ar range".split      #=> ["ar", "range"]
-"arrange".split("")   #=> ["a", "r", "r", "a", "n", "g", "e"]
-"arrange".chars       #=> ["a", "r", "r", "a", "n", "g", "e"]
 
 arr = [1, [2, 3], 4]
 arr.reverse   #=> [4, [2, 3], 1]
