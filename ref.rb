@@ -378,7 +378,8 @@ arr = ["a", "b", "c"]
 arr.size            #=> 3
 arr.length          #=> 3
 arr.count           #=> 3
-arr.count("a")      #=> 1 
+arr.count("a")      #=> 1 (only count individual characters in the argument)
+arr.scan("a")       #=> ["a"] (count the whole argument)
 
 hash.key?(key_name)  #=> return true or false
 
@@ -585,17 +586,6 @@ votes.reduce(Hash.new(0)) do |result, vote|
   result
 end
 => {"A"=>2, "B"=>1}
-
-arr.tally_by { |item| code }
-  # iterate over items, return a hash of items as keys to keep a tally of.
-[1, 2, 3].tally_by { |num| num.even? }
-=> { true => 1, false => 2 } 
-
-arr.group_by { |item| code }
-  # return a hash that groups all the different types of returns from the block.
-names = ["Joe", "Jack", "David", "Kate"]
-names.group_by { |name| name.length }
-=> { 3=>["Joe"], 4=>["Jack", "Kate"], 5=>["David"] }
 
 
 
