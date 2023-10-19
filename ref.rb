@@ -27,6 +27,10 @@ CONTENTS
 ## Iterate and Select
 ## Iterate and Modify
 
+# 6-CLASSES AND OBJECTS
+
+# 7-OTHERS
+
 --------------------
 --------------------
 
@@ -41,11 +45,12 @@ block comment
 cannot be indented
 =end
 
-snake_case_for_file_variable_method_name
+file_variable_method_name
+ClassName
 
 CONSTANT  # available throughout app
 $global   # available throughout app
-@@class   # accessible by instances of class, or class itself
+@@class   # accessible by instances of the class, or the class itself
 @instance # available throughout the current instance of parent class
 local     # obey all scope boundaries
 
@@ -587,7 +592,48 @@ votes.reduce(Hash.new(0)) do |result, vote|
 end
 => {"A"=>2, "B"=>1}
 
+--------------------
 
+# 6-CLASSES AND OBJECTS
+
+class Cat 
+  @@number_of_cats = 0
+
+  attr_accessor :name :gender
+
+  def initialize(n, g)
+    @@number_of_cats += 1
+    @name = n
+    @gender = g
+    puts "This appears when an object is initialized!"
+  end
+
+  def self.total_number_of_cats
+    @@number_of_cats
+  end
+
+  def speak
+    "Hello!"
+  end
+
+  def change_info
+    self.name = n
+    self.gender = g
+  end
+end
+
+rusty = Cat.new("Rusty", "female")   #=> "This appears when an object is initialized!"
+rusty.speak   #=> Hello!
+rusty.name    #=> "Rusty"
+rusty.gender  #=> "female"
+rusty.change_info("Sparky", "male")
+
+--------------------
+
+# 7-OTHERS
+
+## shorthand to swap to two values 
+i, i+1 = i+1, i
 
 
 
