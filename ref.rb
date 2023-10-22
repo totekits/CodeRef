@@ -675,9 +675,40 @@ end
 
 value = Mammal.some_out_of_place_method(4)
 
-## Private methods cannot be invoked from outside of the class.
-## Protected methods other instances of the class (or subclass) can invoke the method.
+## Private methods:
+  # can only be called within the class that defines them
+## Protected methods: 
+  # can be called by instances of the same class and its subclasses
+  # can be accessed from within the class itself and any subclass of that class
+  # other objects or instances from outside the class hierarchy cannot directly call protected methods
+class MyClass
+  def my_public_method
+    # code
+  end
 
+  protected
+
+  def my_protected_method
+    # code
+  end
+
+  private
+
+  def my_private_method
+    # code
+  end
+end
+
+class MySubClass < MyClass
+  def access_protected
+    my_protected_method
+  end
+end
+
+MyClass.new.my_publlic_method
+MyClass.new.my_protected_method # not allowed
+MyClass.new.my_private_method # not allowed
+MySubClass.new.access_protected
 
 --------------------
 
