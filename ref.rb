@@ -87,6 +87,8 @@ user_input = gets.chomp
 test
 #=> "test"
 
+gets # wait for user to hit Enter
+
 print "Love!"
 Love!=> nil
 
@@ -364,6 +366,12 @@ Integer x Float = Float
 "check".length           #=> 5
 "Check".size             #=> 5
 
+"abc\n" # \n is newline
+
+text = "The quick brown fox jumps over the lazy dog"
+result = text.match(/brown/)
+puts result[0] #=> "brown"
+
 --------------------
 
 ## Array
@@ -453,13 +461,21 @@ arr.reject { |item| item < 4 }    #=> [4, 5, 6] # destructive: reject!
 arr.keep_if { |item| item > 3 }   #=> [4, 5, 6]
 arr.delete_if { |item| item < 4 } #=> [4, 5, 6]
 arr.sample(n) # return n random element from array
+arr.repeated_permutation(n) # return an array of all possible n-element permutations with repeated elements
 array_a & array_b # get items that appear in two arrays at the same time
+arr.rotate() #=> [2, 3, 4, 5, 6, 1] () can take length of the rotation 
 
 nes_arr = [[1, 2], [3, 4], [5, 6]]
 nes_arr[0][1]     #=> 2
 nes_arr[9][0]    #=> NoMethodError
 nes_arr[0][9]    #=> nil
 nes_arr.dig(9, 9) #=> nil
+
+# Use .dup when you want a shallow copy of an object.
+# Use .clone when you want a shallow copy of an object that also preserves the frozen state and singleton methods.
+
+fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+index = fruits.index("cherry") #=> 2
 
 --------------------
 
@@ -507,6 +523,16 @@ shoes.select { |k, v| condition } #=> return k-v pairs if true
 shoes.fetch(:summer)  #=> "sandals"
 shoes.fetch(:fall)    #=> KeyError: key not found: :fall
 shoes.fetch(:fall, "defalt nil message")  #=> "default nil message"  
+
+--------------------
+
+## Range
+
+(1..100) # inclusive 
+(1...10) # exclusive
+
+random_numbers = rand # generate a random floating-point number between 0 (inclusive) and 1 (exclusive).
+random_integers = rand(1..100) # generate a random integer between 1 and 100, inclusive.
 
 --------------------
 --------------------
@@ -566,6 +592,10 @@ arr.map { |item| code }
 => [1, 4, 9]
 ["7", "8", "9"].map(&:to_i)
 => [7, 8, 9]
+
+strings = ["1", "2", "3", "4"]
+integers = strings.map { |string| string.to_i }
+integers = strings.map(&:to_i) # shorthand
 
 arr.reduce(optional_initial_acc_value) { |accumulator, item| code }
   # alt: .inject  
