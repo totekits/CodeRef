@@ -21,6 +21,7 @@ CONTENTS
 ## Array
 ## Hash
 ## Range
+## File
 
 # Core Modules
 ## Math
@@ -533,6 +534,15 @@ shoes.fetch(:fall, "defalt nil message")  #=> "default nil message"
 
 random_numbers = rand # generate a random floating-point number between 0 (inclusive) and 1 (exclusive).
 random_integers = rand(1..100) # generate a random integer between 1 and 100, inclusive.
+
+--------------------
+
+## File
+
+File.read(file_name) # read the file
+File.exist? "file_name" # check if a file exist at the specified filepath on the filesystem
+File.readlines # save each line as a separate item in an array
+
 
 --------------------
 --------------------
