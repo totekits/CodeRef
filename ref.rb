@@ -17,6 +17,7 @@ CONTENTS
 
 # Core Classes
 ## Integer and Float
+## Nil
 ## String
 ## Array
 ## Hash
@@ -26,6 +27,7 @@ CONTENTS
 # Core Modules
 ## Math
 ## Enumerable
+## csv
 
 # Class and object
 
@@ -330,6 +332,11 @@ Integer x Float = Float
 
 --------------------
 
+## Nil
+nil.to_s  #=> ""
+
+--------------------
+
 ## String
 
 "abc" # String
@@ -372,6 +379,11 @@ Integer x Float = Float
 text = "The quick brown fox jumps over the lazy dog"
 result = text.match(/brown/)
 puts result[0] #=> "brown"
+
+"just".rjust(7)       #=> "   just"
+"just".rjust(7, "-")  #=> "---just"
+"just".ljust(7)       #=> "just   "
+"just".ljust(7. "-")  #=> "---just"
 
 --------------------
 
@@ -539,10 +551,12 @@ random_integers = rand(1..100) # generate a random integer between 1 and 100, in
 
 ## File
 
-File.read(file_name) # read the file
-File.exist? "file_name" # check if a file exist at the specified filepath on the filesystem
-File.readlines # save each line as a separate item in an array
+File.exist? "file_name" # checks if a file exist at the specified filepath on the filesystem
+File.read(file_name) # reads the entire content of the file into a single string
+File.readlines # reads the file line by line, returns an array where each element is a line from the file
 
+require "json" # loads library or file by searching for them in the load path
+require_relative "my_module" # loads local library or file relative to the current file's path 
 
 --------------------
 --------------------
@@ -616,6 +630,22 @@ votes.reduce(Hash.new(0)) do |result, vote|
   result
 end
 => {"A"=>2, "B"=>1}
+
+--------------------
+
+## Math
+
+--------------------
+
+## csv
+require "csv" # loads csv module
+
+contents = CSV.open(
+  "file.csv", # loads file
+  headers: true, # states that the file has a header
+  header_converters: :symbol # converts the header names into symbols
+  )
+
 
 --------------------
 --------------------
