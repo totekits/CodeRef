@@ -31,6 +31,8 @@ CONTENTS
 
 # Class and object
 
+# Others
+
 --------------------
 --------------------
 
@@ -339,7 +341,8 @@ nil.to_s  #=> ""
 
 ## String
 
-"abc" # String
+"abc" # string literal
+%{abc} # String literal
 
 "one two three".split #=> ["one", "two", "three"]
 "one".split("")       #=> ["o", "n", "e"]
@@ -357,7 +360,7 @@ nil.to_s  #=> ""
 "con" << "cat"      #=> "concat"
 
 "add".sub("d", "s")       #=> "asd"
-"add".gsub("d", "s")      #=> "ass"
+"add".gsub("d", "s")      #=> "ass"   # destructive form: gsub!
 "add".insert(-1, " on")   #=> "add on"
 "!".prepend("add ", "on") #=> "add on!"
 
@@ -782,11 +785,17 @@ MySubClass.new.access_protected
 
 --------------------
 
-# OTHERS
+# Others
 
 ## Shorthand to swap to two values 
 i, i+1 = i+1, i
 
+## Exception
+begin
+  # code that might raise an exception
+rescue
+  # code to handle the exception
+end
 
 
 
