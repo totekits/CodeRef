@@ -595,6 +595,8 @@ output = erb.result(binding)
 --------------------
 
 ## Date, Time
+
+require 'time'  # load time class
 Time.now                #=> current time
 Time.now.utc
 Time.now.to_i           #=> 1549054305 # generate a time-zone independent timestamp
@@ -629,9 +631,15 @@ time.strftime("Unix time is %s")  #=> "Unix time is 1698744960"
 # %A    Day of the week
 # %B    Month
 
+require 'date' # load Date class
+current_date = Date.today
+tomorrow = Date.today + 1 
+Date.parse("10/10/2010")    #=> 2010-10-10
+Date.iso8601("2018-10-01")  #=> 2018-10-01
+Date.strptime( your-date-format )
 
-
-
+Date::MONTHNAMES # (index 0 = nil)
+Date.DAYNAMES # days of the week, starts with Sunday
 
 --------------------
 --------------------
