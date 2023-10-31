@@ -595,6 +595,42 @@ output = erb.result(binding)
 --------------------
 
 ## Date, Time
+Time.now                #=> current time
+Time.now.utc
+Time.now.to_i           #=> 1549054305 # generate a time-zone independent timestamp
+Time.new (2023, 10, 31) #=> 2023-10-31 00:00:00 +0100
+Time.at(15000000000)    #=> #=> 2017-07-14 04:40:00 +0200  # parameter: Unix timestamp
+Time.new + 10   # add seconds
+
+time = Time.now
+time.day 
+time.month
+time.hour
+time.sunday? # monday? tuesday? wednesday? thursday? friday? Saturday?
+time.zone # get timezone
+
+time = Time.new
+time.strftime("%d/%m/%Y")         #=> "31/10/2023"
+time.strftime("%k:%M")            #=> "16:36"
+time.strftime("%I:%M %p")         #=> "04:36 PM"
+time.strftime("Today is %A")      #=> "Today is Tuesday"
+time.strftime("%d of %B, %Y")     #=> "31 of October, 2023"
+time.strftime("Unix time is %s")  #=> "Unix time is 1698744960"
+
+# %d    Day of the month 01..31
+# %m    Month of the year 01..12
+# %-m   Month of the year 1..12
+# %k    Hour 0..23
+# %I    Hour 1..12
+# %M    Minutes
+# %S    Seconds 00..60
+# %p    AM/PM
+# %Y    Year
+# %A    Day of the week
+# %B    Month
+
+
+
 
 
 --------------------
