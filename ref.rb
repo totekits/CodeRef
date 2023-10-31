@@ -16,22 +16,27 @@ CONTENTS
 # Loops
 
 # Core Classes
-## Integer and Float
+## Integer, Float
 ## Nil
 ## String
 ## Array
 ## Hash
 ## Range
 ## File
+## ERB (Embedded Ruby)
+## Date, Time
 
 # Core Modules
 ## Math
 ## Enumerable
-## csv
+## CSV
+## Kernel
 
 # Class and object
 
 # Others
+## Shorthand to swap two values
+## Exception
 
 --------------------
 --------------------
@@ -306,7 +311,7 @@ end
 
 # CORE ClASSES
 
-## Integer and Float
+## Integer, Float
 
 123   # Integer
 12.3  # Float
@@ -364,7 +369,14 @@ nil.to_s  #=> ""
 "add".insert(-1, " on")   #=> "add on"
 "!".prepend("add ", "on") #=> "add on!"
 
-"apple".delete("p") #=> "ale"
+"delete".delete("e")        #=> "dlt"
+"delete".delete("e", "t")   #=> "dl"
+"Delete".delete('a-z')      #=> "D"
+"Delete1234".delete('0-9')  #=> "Delete"
+"Delete1234".delete('^0-9') #=> "1234"
+
+"slice"[1..-1]    #=> lice
+"slice".slice!(0)  #=> lice
 
 "kind"[0]    #=> "k"
 "kind"[0..1] #=> "ki"
@@ -561,6 +573,30 @@ File.readlines # reads the file line by line, returns an array where each elemen
 require "json" # loads library or file by searching for them in the load path
 require_relative "my_module" # loads local library or file relative to the current file's path 
 
+File.open(filename, 'w')
+  # first parameter: name of the file
+  # second parameter: flag that states how will the file be opened
+  # 'w' = the file will be open for writing
+
+--------------------
+
+## ERB (Embedded Ruby)
+
+require 'erb' # load ERB
+erb = ERB.new(template)
+  # create new ERB object, innitilizaing it with privided template
+  # template contains HTML-like structure with embedded Ruby code using <%= %>
+  # <%= code %> # show output
+  # <% code %>  # not show output
+output = erb.result(binding)
+  # evaluate erb, replacing the placeholders with actual values
+  # obtained from the current scope through 'binding'
+
+--------------------
+
+## Date, Time
+
+
 --------------------
 --------------------
 
@@ -640,7 +676,7 @@ end
 
 --------------------
 
-## csv
+## CSV
 require "csv" # loads csv module
 
 contents = CSV.open(
@@ -649,6 +685,11 @@ contents = CSV.open(
   header_converters: :symbol # converts the header names into symbols
   )
 
+
+--------------------
+
+## Kernel
+.binding
 
 --------------------
 --------------------
@@ -787,7 +828,7 @@ MySubClass.new.access_protected
 
 # Others
 
-## Shorthand to swap to two values 
+## Shorthand to swap two values 
 i, i+1 = i+1, i
 
 ## Exception
@@ -796,9 +837,6 @@ begin
 rescue
   # code to handle the exception
 end
-
-
-
 
 
 
