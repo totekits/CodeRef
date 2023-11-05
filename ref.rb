@@ -23,14 +23,17 @@ CONTENTS
 ## Hash
 ## Range
 ## File
+## Dir
 ## ERB (Embedded Ruby)
 ## Date, Time
+## Regexp
 
 # Core Modules
 ## Math
 ## Enumerable
 ## CSV
 ## Kernel
+## JSON
 
 # Class and object
 
@@ -505,6 +508,8 @@ nes_arr.dig(9, 9) #=> nil
 fruits = ["apple", "banana", "cherry", "date", "elderberry"]
 index = fruits.index("cherry") #=> 2
 
+most_frequent_value = array.tally.max_by { |k, v| v }.first
+
 --------------------
 
 ## Hash
@@ -562,13 +567,16 @@ shoes.fetch(:fall, "defalt nil message")  #=> "default nil message"
 random_numbers = rand # generate a random floating-point number between 0 (inclusive) and 1 (exclusive).
 random_integers = rand(1..100) # generate a random integer between 1 and 100, inclusive.
 
+range.cover?(value) #=> return true if value falls within the given range
+
 --------------------
 
 ## File
 
 File.exist? "file_name" # checks if a file exist at the specified filepath on the filesystem
 File.read(file_name) # reads the entire content of the file into a single string
-File.readlines # reads the file line by line, returns an array where each element is a line from the file
+File.readlines # returns an array where each element is a line from the file
+File.write(filename, content, options) # writes a content to a file
 
 require "json" # loads library or file by searching for them in the load path
 require_relative "my_module" # loads local library or file relative to the current file's path 
@@ -577,6 +585,17 @@ File.open(filename, 'w')
   # first parameter: name of the file
   # second parameter: flag that states how will the file be opened
   # 'w' = the file will be open for writing
+
+--------------------
+
+## Dir
+
+Dir.entries(path) #=> returns an array of filenames in the directory, 'path' including '.' and '..'
+Dir.foreach(path) { |filename| ... } #=> executes the block for each entry in the directory
+Dir.mkdir(path) #=> creates a new directory at the given path
+Dir.rmdir(path) #=> removes the directory at the given path
+Dir.exist?(path) #=> checks if the directory at the sepcified path exists.
+Dir.empty(path) #=> checks if the directory at the specified path is empty.
 
 --------------------
 
@@ -636,10 +655,29 @@ current_date = Date.today
 tomorrow = Date.today + 1 
 Date.parse("10/10/2010")    #=> 2010-10-10
 Date.iso8601("2018-10-01")  #=> 2018-10-01
-Date.strptime( your-date-format )
+Date.strptime( your-time-format )
 
 Date::MONTHNAMES # (index 0 = nil)
 Date.DAYNAMES # days of the week, starts with Sunday
+
+date.wday #=> number represeting the day of the week (0 = Sunday) 
+
+--------------------
+
+## Regexp
+
+/pattern/ # Regexp literal
+Regexp.new("pattern") 
+
+pattern = /hello/
+"hello, world" =~ pattern  # Returns the index of the match or nil
+"hello, world".match(pattern)  # Returns a MatchData object if there is a match
+
+'^' # matches the start of a line
+'$' # matches the end of a line
+
+'[abc]'   # matches any 'a', 'b', or 'c'
+'[^abc]'  # matches any character except 'a', 'b', or 'c'
 
 --------------------
 --------------------
@@ -734,6 +772,14 @@ contents = CSV.open(
 
 ## Kernel
 .binding
+
+--------------------
+
+## JSON
+
+require 'json'
+JSON.dump(onject) # serializes a Ruby onject (usually an array of a hash) into a JSON string.
+JSON.parse(json_string) # deserializes a JSON string into a Ruby object.
 
 --------------------
 --------------------
@@ -882,8 +928,9 @@ rescue
   # code to handle the exception
 end
 
-
-
+# shorhand
+choice = gets.chomp
+command, number = choice.split
 
 
 
