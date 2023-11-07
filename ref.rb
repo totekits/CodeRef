@@ -27,6 +27,7 @@ CONTENTS
 ## ERB (Embedded Ruby)
 ## Date, Time
 ## Regexp
+## Proc, Lambda
 
 # Core Modules
 ## Math
@@ -36,6 +37,8 @@ CONTENTS
 ## JSON
 
 # Class and object
+
+# Block
 
 # Others
 ## Shorthand to swap two values
@@ -680,6 +683,29 @@ pattern = /hello/
 '[^abc]'  # matches any character except 'a', 'b', or 'c'
 
 --------------------
+
+## Proc, Lambda
+
+my_lambda = lambda { puts "Hi" }
+my_name = ->(name) { puts "Hi, #{name}!" }
+my_name.call("John") #=> Hi, John!
+my_name.("John")
+my_name["John"]
+my_name.=== "John"
+
+my_proc = proc { puts "Hi" }
+my_info = Proc.new { |name, age| puts "My name is #{name}. I'm #{age} years old." }
+my_info.call("John", 17) #=> My name is John. I'm 17 years old. 
+
+  # Lambda will raise an error if the number of parameters expected is not honored.
+  # Proc will not. 
+
+  # When you write an explicit return inside a lambda, it returns from the lambda block back to the caller.
+  # A proc onject returns from the context in which it is called.
+
+  # Both lambda and proc support default arguments, and can be used as arguments to a method.
+
+--------------------
 --------------------
 
 # CORE MODULES
@@ -914,6 +940,42 @@ MyClass.new.my_protected_method # not allowed
 MyClass.new.my_private_method # not allowed
 MySubClass.new.access_protected
 
+--------------------
+--------------------
+
+# Block
+
+def love_language
+  yield('Ruby')
+  yield('Go')
+end
+
+love_language { |lang| puts "I love #{lang}" }
+#=> I love Ruby
+#=> I love Go
+
+def explicit_block(&block)
+  block.call # same as yield
+end
+
+explicit_block { puts "explicit block called" }
+
+def maybe_block
+  if block_given?
+    puts "block party"
+  end
+
+  puts "executed regardless"
+end
+
+maybe_block
+#=> executed regardless
+
+maybe_block {}
+#=> block party
+#=> executed regardless
+
+--------------------
 --------------------
 
 # Others
