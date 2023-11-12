@@ -567,7 +567,7 @@ shoes.fetch(:fall, "defalt nil message")  #=> "default nil message"
 ## Range
 
 (1..100) # inclusive 
-(1...10) # exclusive
+(1...10) # exclusive (exclude the end)
 
 random_numbers = rand # generate a random floating-point number between 0 (inclusive) and 1 (exclusive).
 random_integers = rand(1..100) # generate a random integer between 1 and 100, inclusive.
