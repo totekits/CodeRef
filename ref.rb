@@ -45,6 +45,7 @@ CONTENTS
 # Others
 ## Shorthand to swap two values
 ## Exception
+## Require
 
 --------------------
 --------------------
@@ -1078,7 +1079,13 @@ end
 choice = gets.chomp
 command, number = choice.split
 
+--------------------
+--------------------
 
+# Require
+
+require 'some_library'
+require_relative 'relative_path_to_file'
 
 
 
