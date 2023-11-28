@@ -40,7 +40,7 @@ CONTENTS
 
 # Block
 
-# Patterning Matching
+# Pattern Matching
 
 # Others
 ## Shorthand to swap two values
@@ -345,6 +345,12 @@ Integer x Float = Float
 4.between?(2, 6)  #=> true
 16.remainder(5)   #=> 1
 16.divmod(5)      #=> [3, 1]
+-5.abs            #=> 5 
+12345.digits # not available on floats  #=> [1, 2, 3, 4, 5]
+12345.digits { |digit| digit * 2 }      #=> [2, 4, 6, 8, 10]
+1.5.ceil    #=> 2
+1.5.floor   #=> 1
+1.5.round   #=> 2
 
 --------------------
 
